@@ -4,4 +4,8 @@ server {
   passenger_enabled on;
   passenger_app_env {{ passenger_app_env }};
   root {{ passenger_app_root }};
+  
+  {% for env_var in app_env_vars %}
+  passenger_env_var {{ env_var.name }} "{{ env_var.value }}";
+  {% endfor %}
 }
